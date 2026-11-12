@@ -64,7 +64,7 @@ taskForm.addEventListener("submit", function (event) {
         title: titleInput.value.trim(),
         priority: priorityInput.value,
         category: categoryInput.value,
-        dueDate: dueInput.value,           // format: "2026-11-20"
+        dueDate: dueInput.value,           // format: "2026-11-20" or "" if blank
         reminder: reminderInput.value,     // format: "2026-11-20T09:00" or "" if blank
         reminded: false                    // becomes true once the reminder has gone off
     };
@@ -107,8 +107,10 @@ function displayTasks() {
         return task.title.toLowerCase().includes(searchText);
     });
 
-    // Sort so the task due soonest is at the top
+    // Sort so the task due soonest is at the top (no due date goes last)
     matchingTasks.sort(function (a, b) {
+        if (a.dueDate === "") return 1;
+        if (b.dueDate === "") return -1;
         return a.dueDate.localeCompare(b.dueDate);
     });
 
@@ -148,10 +150,16 @@ function displayTasks() {
         categoryTag.textContent = categoryNames[task.category];
 
         var dueText = document.createElement("span");
-        dueText.textContent = "Due: " + formatDate(task.dueDate);
-        if (isOverdue(task.dueDate)) {
-            dueText.textContent += " (Overdue!)";
-            dueText.className = "overdue";
+
+        // If no due date was picked, say so instead of trying to format a blank date
+        if (task.dueDate === "") {
+            dueText.textContent = "No due date";
+        } else {
+            dueText.textContent = "Due: " + formatDate(task.dueDate);
+            if (isOverdue(task.dueDate)) {
+                dueText.textContent += " (Overdue!)";
+                dueText.className = "overdue";
+            }
         }
 
         details.appendChild(priorityTag);
@@ -239,7 +247,10 @@ function checkReminders() {
 }
 
 function showReminder(task) {
-    var message = "Reminder: \"" + task.title + "\" is due " + formatDate(task.dueDate);
+    var message = "Reminder: \"" + task.title + "\"";
+    if (task.dueDate !== "") {
+        message += " is due " + formatDate(task.dueDate);
+    }
 
     // On-page banner
     reminderText.textContent = message;
