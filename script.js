@@ -1,3 +1,4 @@
+console.log("script.js is loaded");
 // ===================================================
 // 1. GRAB THE ELEMENTS WE NEED FROM THE HTML
 // ===================================================
