@@ -1,0 +1,249 @@
+/* ===== Basic page setup ===== */
+* {
+    box-sizing: border-box;
+    /* padding is included in an element's width */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f4f8;
+    color: #222;
+}
+
+header {
+    background-color: #1e3a5f;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 0 0 8px 0;
+}
+
+header p {
+    margin: 0;
+    color: #cfdcec;
+}
+
+main {
+    max-width: 750px;
+    margin: 0 auto;
+    /* centers the content */
+    padding: 20px;
+}
+
+/* ===== Cards (the white boxes) ===== */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #1e3a5f;
+}
+
+/* ===== Form ===== */
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 12px 0 5px 0;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Puts two form fields side by side */
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row div {
+    flex: 1;
+    /* each field takes up equal space */
+}
+
+#add-button {
+    margin-top: 18px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#add-button:hover {
+    background-color: #2d5486;
+}
+
+/* ===== Search bar ===== */
+#search-bar {
+    margin-bottom: 15px;
+}
+
+/* ===== Task list ===== */
+#task-list {
+    list-style: none;
+    /* removes bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e2e2e2;
+    border-left: 8px solid gray;
+    /* color changes based on priority (below) */
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+}
+
+.task-title {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+}
+
+.task-details {
+    font-size: 13px;
+    color: #555;
+    margin: 0;
+}
+
+/* Small colored labels for priority and category */
+.tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 5px;
+    color: white;
+}
+
+/* ===== Priority colors (left border + tag) ===== */
+.task.chill {
+    border-left-color: #4caf50;
+}
+
+.task.dont-worry {
+    border-left-color: #2196f3;
+}
+
+.task.start-worrying {
+    border-left-color: #ff9800;
+}
+
+.task.lock-in {
+    border-left-color: #e53935;
+}
+
+.tag.chill {
+    background-color: #4caf50;
+}
+
+.tag.dont-worry {
+    background-color: #2196f3;
+}
+
+.tag.start-worrying {
+    background-color: #ff9800;
+}
+
+.tag.lock-in {
+    background-color: #e53935;
+}
+
+/* Category tag is gray so it doesn't compete with priority color */
+.tag.category {
+    background-color: #6b7280;
+}
+
+/* Red text when a task is past its due date */
+.overdue {
+    color: #e53935;
+    font-weight: bold;
+}
+
+.delete-button {
+    background-color: white;
+    color: #e53935;
+    border: 1px solid #e53935;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+    color: white;
+}
+
+#empty-message {
+    text-align: center;
+    color: #888;
+}
+
+/* ===== Reminder banner ===== */
+#reminder-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff3cd;
+    border: 1px solid #ffcc00;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#dismiss-reminder {
+    background-color: #1e3a5f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* Used by script.js to hide things */
+.hidden {
+    display: none !important;
+}
+
+/* ===== Smaller screens (phones) ===== */
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column;
+        /* stack form fields instead of side by side */
+        gap: 0;
+    }
+
+    .task {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .delete-button {
+        margin-top: 10px;
+    }
+}
