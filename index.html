@@ -1,38 +1,89 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    </head>
+<body>
 
+    <header>
+        <h1>Task Tracker</h1>
+        <p>Keep track of school, work, and personal tasks.</p>
+    </header>
 
-    <body>
-        <form id="task-form">
-            <h1>My Task Tracker</h1>
-            <label>Task: </label>
-            <input type="text">
-            <input type="submit" value = "+">
-            <input type="reset">
+    <main>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Task #</th>
-                        <th>Desc.</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
+        <!-- Reminder banner: hidden until a reminder goes off (script.js shows it) -->
+        <div id="reminder-banner" class="hidden">
+            <span id="reminder-text"></span>
+            <button id="dismiss-reminder" type="button">Dismiss</button>
+        </div>
 
+        <!-- ADD TASK FORM -->
+        <section class="card">
+            <h2>Add a Task</h2>
+            <form id="task-form">
 
-                </tbody>
+                <label for="task-title">Task</label>
+                <input type="text" id="task-title" placeholder="e.g. Finish MIS 481 homework" required>
 
-            </table>
+                <div class="row">
+                    <div>
+                        <label for="task-priority">Priority</label>
+                        <select id="task-priority">
+                            <option value="chill">Chill</option>
+                            <option value="dont-worry">Don't Worry</option>
+                            <option value="start-worrying">Start Worrying</option>
+                            <option value="lock-in">Lock In</option>
+                        </select>
+                    </div>
 
-        </form>
+                    <div>
+                        <label for="task-category">Category</label>
+                        <select id="task-category">
+                            <option value="school">School</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div>
+                        <label for="task-due">Due Date</label>
+                        <input type="date" id="task-due" required>
+                    </div>
 
-    </body>
+                    <div>
+                        <label for="task-reminder">Remind Me At (optional)</label>
+                        <input type="datetime-local" id="task-reminder">
+                    </div>
+                </div>
 
+                <button type="submit" id="add-button">Add Task</button>
+            </form>
+        </section>
+
+        <!-- TASK LIST + SEARCH -->
+        <section class="card">
+            <h2>My Tasks</h2>
+
+            <input type="search" id="search-bar" placeholder="Search tasks...">
+
+            <!-- Tasks get added here by script.js -->
+            <ul id="task-list"></ul>
+
+            <!-- Shown when there are no tasks to display -->
+            <p id="empty-message">No tasks yet. Add one above!</p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
 
 </html>
